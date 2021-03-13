@@ -45,20 +45,26 @@ def find_movies():
         if movie["title"] == search_title:
             print_movie(movie)
 
+# create a dictionary of desired inputs
+user_options = {
+    "a": add_movie,
+    "l": show_movies,
+    "f": find_movies
+}
+
 # function for the user menu
 def menu():
 
     # initiate a variable with the user choice
     selection = input(MENU_PROMPT)
 
-    # run the loop and else-ifs to navigate different choice options
+    # run the loop until the user quits
     while selection != 'q':
-        if selection == "a":
-            add_movie()
-        elif selection == "l":
-            show_movies()
-        elif selection == "f":
-            find_movies()
+
+        # if the user input is among the valid options, assign it to a variable and run the function
+        if selection in user_options:
+            selected_function = user_options[selection]
+            selected_function()
         else:
             print('Unknown command. Please try again.')
 
